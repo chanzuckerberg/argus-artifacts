@@ -26,6 +26,6 @@ jobs:
         with:
           version: latest
           workdir: core/cli
-          args: release --rm-dist
+          args: release --clean
         env:
           GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}

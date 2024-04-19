@@ -1,5 +1,15 @@
 project_name: argus
 
+builds:
+  - skip: true
+    binary: argus
+    goos:
+      - darwin
+      # - linux
+    goarch:
+      # - amd64
+      - arm64
+
 release:
   github:
     owner: chanzuckerberg
@@ -7,7 +17,7 @@ release:
 
 brews:
   - description: "The command line tool for the Argus platform."
-    tap:
+    repository:
       owner: chanzuckerberg
       name: homebrew-tap
     homepage: "https://github.com/chanzuckerberg/argus-artifacts"
