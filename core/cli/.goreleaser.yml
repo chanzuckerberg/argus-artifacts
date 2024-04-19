@@ -3,12 +3,12 @@ project_name: argus
 builds:
   - skip: true
     binary: argus
-    goos:
-      - darwin
-      # - linux
-    goarch:
-      # - amd64
-      - arm64
+    # goos:
+    #   - darwin
+    #   # - linux
+    # goarch:
+    #   # - amd64
+    #   - arm64
 
 release:
   github:
