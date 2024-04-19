@@ -38,7 +38,7 @@ jobs:
         uses: goreleaser/goreleaser-action@v5
         with:
           version: latest
-          workdir: ${{ github.event.repository.name }}/core/cli
+          workdir: core-platform/core/cli
           args: release --clean
         env:
           GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
