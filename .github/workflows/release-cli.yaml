@@ -34,7 +34,7 @@ jobs:
 
       - uses: actions/setup-go@v5
         with:
-          go-version-file: core-platform/core/go.mod
+          go-version-file: ${{ github.event.repository.name }}/core/cli/core-platform/core/go.mod
           cache: true
 
       - name: Run GoReleaser
