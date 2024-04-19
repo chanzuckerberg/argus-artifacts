@@ -1,14 +1,20 @@
 project_name: argus
 
 builds:
-  - skip: true
-    binary: argus
-    # goos:
-    #   - darwin
-    #   # - linux
-    # goarch:
-    #   # - amd64
-    #   - arm64
+  - binary: argus
+    dir: core-platform/core/cli
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - darwin
+      - linux
+    goarch:
+      - amd64
+      - arm64
+    ldflags:
+      - "-w -s -X github.com/chanzuckerberg/core-platform/core/shared/go/version.ReleaseGitSha={{.Commit}} -X github.com/chanzuckerberg/core-platform/core/shared/go/version.ReleaseVersion={{.Version}}"
+    flags:
+      - -trimpath
 
 release:
   github:
