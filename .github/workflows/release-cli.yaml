@@ -20,6 +20,10 @@ jobs:
           token: ${{ steps.generate_token.outputs.token }}
           repository: chanzuckerberg/core-platform
           path: core-platform
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: core-platform/core/go.mod
+          cache: true
 
       - uses: actions/checkout@v4
         # we need to fetch all history and tags,
@@ -28,12 +32,13 @@ jobs:
         with:
           fetch-depth: 0
           token: ${{ steps.generate_token.outputs.token }}
+          path: ${{ github.event.repository.name }}
 
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v5
         with:
           version: latest
-          workdir: core-platform/core/cli
+          workdir: ${{ github.event.repository.name }}/core/cli
           args: release --clean
         env:
           GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
