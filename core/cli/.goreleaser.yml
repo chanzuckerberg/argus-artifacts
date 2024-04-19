@@ -1,0 +1,14 @@
+project_name: argus
+
+release:
+  github:
+    owner: chanzuckerberg
+    name: argus-artifacts
+
+brews:
+  - description: "The command line tool for the Argus platform."
+    tap:
+      owner: chanzuckerberg
+      name: homebrew-tap
+    homepage: "https://github.com/chanzuckerberg/argus-artifacts"
+    test: system "#{bin}/argus version"
