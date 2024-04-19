@@ -21,10 +21,6 @@ jobs:
         # NOTE: this needs to happen after the tag is created so the tag is present locally
         with:
           fetch-depth: 0
-      - uses: actions/setup-go@v5
-        with:
-          go-version-file: core/go.mod
-          cache: true
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v5
         with:
