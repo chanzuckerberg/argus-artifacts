@@ -39,7 +39,7 @@ jobs:
       - # copy ci files to argus-artifacts
         run: |
           cp -r --parents ${{ env.SOURCE_REPO }}/ci/packages/*/dist/ ${{ env.ARGUS_ARTIFACTS_REPO }}/
-          cp -r --parents ${{ env.SOURCE_REPO }}/ci/packages/*/action.y*ml' ${{ env.ARGUS_ARTIFACTS_REPO }}/
+          cp -r --parents ${{ env.SOURCE_REPO }}/ci/packages/*/action.y*ml ${{ env.ARGUS_ARTIFACTS_REPO }}/
       
       - run: ls -la ./${{ env.ARGUS_ARTIFACTS_REPO }}
       - run: ls ./${{ env.ARGUS_ARTIFACTS_REPO }}/ci/packages/create-stack/
