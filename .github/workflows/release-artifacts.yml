@@ -29,21 +29,20 @@ jobs:
       # clone the source repo
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0
           token: ${{ steps.generate_token.outputs.token }}
           repository: chanzuckerberg/${{ env.SOURCE_REPO }}
-          path: ${{ github.event.repository.name }}/${{ env.SOURCE_REPO }}
+          path: ${{ github.event.repository.name }}/core/cli/${{ env.SOURCE_REPO }}
 
       - uses: actions/setup-go@v5
         with:
-          go-version-file: ${{ github.event.repository.name }}/${{ env.SOURCE_REPO }}/core/go.mod
+          go-version-file: ${{ github.event.repository.name }}/core/cli/${{ env.SOURCE_REPO }}/core/go.mod
           cache: true
 
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v5
         with:
           version: latest
-          workdir: ${{ github.event.repository.name }}/${{ env.SOURCE_REPO }}/core/cli/
+          workdir: ${{ github.event.repository.name }}/core/cli/
           args: release --clean
         env:
           GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
