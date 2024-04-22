@@ -32,18 +32,18 @@ jobs:
         with:
           token: ${{ steps.generate_token.outputs.token }}
           repository: chanzuckerberg/${{ env.SOURCE_REPO }}
-          path: ${{ env.SOURCE_REPO }}
+          path: ${{ github.event.repository.name }}/${{ env.SOURCE_REPO }}
 
       - uses: actions/setup-go@v5
         with:
-          go-version-file: ${{ env.SOURCE_REPO }}/core/go.mod
+          go-version-file: ${{ github.event.repository.name }}/${{ env.SOURCE_REPO }}/core/go.mod
           cache: true
 
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v5
         with:
           version: latest
-          workdir: ${{ env.SOURCE_REPO }}/core/cli/
+          workdir: ${{ github.event.repository.name }}/${{ env.SOURCE_REPO }}/core/cli/
           args: release --clean
         env:
           GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
