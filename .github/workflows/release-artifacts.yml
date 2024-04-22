@@ -38,7 +38,7 @@ jobs:
 
       - # copy ci files to argus-artifacts
         run: |
-          rsync -a --include 'ci/packages/*/dist/' --include 'ci/packages/*/action.y*ml' --exclude 'ci/packages/*/*' ${{ env.SOURCE_REPO }}/ ${{ env.ARGUS_ARTIFACTS_REPO }}/
+          rsync -a --include 'ci/packages/*/dist/' --include 'ci/packages/*/action.y*ml' --exclude '*' ${{ env.SOURCE_REPO }}/ ${{ env.ARGUS_ARTIFACTS_REPO }}/
       
       - run: ls -la ./${{ env.ARGUS_ARTIFACTS_REPO }}
       - run: ls ./${{ env.ARGUS_ARTIFACTS_REPO }}/ci/packages/create-stack/
