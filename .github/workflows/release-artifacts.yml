@@ -31,6 +31,7 @@ jobs:
         with:
           token: ${{ steps.generate_token.outputs.token }}
           repository: chanzuckerberg/${{ env.SOURCE_REPO }}
+          # we need to clone the source repo into a directory within the artifact repo so that goreleaser will build the source but use the tag from the artifact repo
           path: ${{ github.event.repository.name }}/core/cli/${{ env.SOURCE_REPO }}
 
       - uses: actions/setup-go@v5
