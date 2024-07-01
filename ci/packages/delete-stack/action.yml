@@ -12,6 +12,10 @@ inputs:
     description: "If true, the stack will not be deleted"
     required: false
     default: "false"
+  githubToken:
+    description: "Github token for authenticating with the Github API"
+    required: false
+    default: ${{ github.token }}
 
 outputs:
   stackName:

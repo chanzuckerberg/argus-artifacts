@@ -12,10 +12,20 @@ inputs:
     description: "If true, the stack will not be created"
     required: false
     default: "false"
+  githubToken:
+    description: "Github token for authenticating with the Github API"
+    required: false
+    default: ${{ github.token }}
+  waitForDeploymentSeconds:
+    description: "Number of seconds to wait for the stack deployment to become synced and healthy before succeeding (anything <= 0 means no wait)"
+    required: false
+    default: '-1'
 
 outputs:
   stackName:
     description: "Name of the stack that was created"
+  stackShortName:
+    description: "Short name of the stack that was created"
   baseURL:
     description: "Base URL of the stack"
 
