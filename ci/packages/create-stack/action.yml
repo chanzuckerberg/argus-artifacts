@@ -20,6 +20,10 @@ inputs:
     description: "Number of seconds to wait for the stack deployment to become synced and healthy before succeeding (anything <= 0 means no wait)"
     required: false
     default: '-1'
+  postStackDetails:
+    description: "Whether details about the stack should be posted to the PR (if invoked from a PR)"
+    required: false
+    default: 'true'
 
 outputs:
   stackName:
