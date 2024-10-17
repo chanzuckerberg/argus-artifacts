@@ -4,7 +4,7 @@ on:
       - '*'
 
 env:
-  SOURCE_REPO: core-platform
+  SOURCE_REPO: argus
 
 name: release
 jobs:

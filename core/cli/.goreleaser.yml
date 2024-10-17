@@ -2,7 +2,7 @@ project_name: argus
 
 builds:
   - binary: argus
-    dir: core-platform/core/cli
+    dir: argus/core/cli
     env:
       - CGO_ENABLED=0
     goos:
@@ -12,7 +12,7 @@ builds:
       - amd64
       - arm64
     ldflags:
-      - "-w -s -X github.com/chanzuckerberg/core-platform/core/shared/go/version.ReleaseGitSha={{.Commit}} -X github.com/chanzuckerberg/core-platform/core/shared/go/version.ReleaseVersion={{.Version}}"
+      - "-w -s -X github.com/chanzuckerberg/argus/core/shared/go/version.ReleaseGitSha={{.Commit}} -X github.com/chanzuckerberg/argus/core/shared/go/version.ReleaseVersion={{.Version}}"
     flags:
       - -trimpath
 
