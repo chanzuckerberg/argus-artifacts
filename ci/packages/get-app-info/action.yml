@@ -1,0 +1,15 @@
+name: Retrieves metadata for a given application
+description: Retrieves metadata for a given application
+
+inputs:
+  app_name:
+    description: "Name of the application"
+    required: true
+
+outputs:
+  app_info:
+    description: Metadata for the application
+
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
