@@ -1,0 +1,29 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "OrganizationReadOnlyAccess",
+      "Effect": "Allow",
+      "Principal": "*",
+      "Action": [
+        "ecr:BatchCheckLayerAvailability",
+        "ecr:BatchGetImage",
+        "ecr:DescribeImageScanFindings",
+        "ecr:DescribeImages",
+        "ecr:DescribeRepositories",
+        "ecr:GetAuthorizationToken",
+        "ecr:GetDownloadUrlForLayer",
+        "ecr:GetLifecyclePolicy",
+        "ecr:GetLifecyclePolicyPreview",
+        "ecr:GetRepositoryPolicy",
+        "ecr:ListImages",
+        "ecr:ListTagsForResource"
+      ],
+      "Condition": {
+        "StringEquals": {
+          "aws:PrincipalOrgID": "o-56v5gp5fcu"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "rules": [
+    {
+      "rulePriority": 1,
+      "description": "Keep at most 1000 images",
+      "selection": {
+        "tagStatus": "any",
+        "countType": "imageCountMoreThan",
+        "countNumber": 1000
+      },
+      "action": {
+        "type": "expire"
+      }
+    }
+  ]
+}
