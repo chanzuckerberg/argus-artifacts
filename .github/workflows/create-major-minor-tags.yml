@@ -1,0 +1,53 @@
+on:
+  release:
+    types: [published]
+
+name: tag-major-minor
+jobs:
+  create-major-minor-tags:
+    runs-on: arm64
+    steps:
+      - name: Generate token
+        id: generate_token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.CZI_RELEASE_PLEASE_APP_ID }}
+          private-key: ${{ secrets.CZI_RELEASE_PLEASE_PK }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install semver
+        run: npm install semver
+      - name: Parse Version
+        id: parse_version
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const semver = require('semver')
+            const version = context.payload.release.tag_name
+            if (semver.valid(version)) {
+              core.setOutput('major', semver.major(version))
+              core.setOutput('minor', semver.minor(version))
+            } else {
+              throw new Error(`Invalid version: ${version}`)
+            }
+
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ steps.generate_token.outputs.token }}
+          ref: ${{ github.ref }}
+
+      - name: tag root major and minor versions
+        shell: bash
+        run: |
+          git config user.name czi-github-helper[bot]
+          git config user.email 95879977+czi-github-helper[bot]@users.noreply.github.com
+          git tag -d v${{ steps.parse_version.outputs.major }} || true
+          git tag -d v${{ steps.parse_version.outputs.major }}.${{ steps.parse_version.outputs.minor }} || true
+          git push origin :v${{ steps.parse_version.outputs.major }} || true
+          git push origin :v${{ steps.parse_version.outputs.major }}.${{ steps.parse_version.outputs.minor }} || true
+          git tag -a v${{ steps.parse_version.outputs.major }} -m "Release v${{ steps.parse_version.outputs.major }}"
+          git tag -a v${{ steps.parse_version.outputs.major }}.${{ steps.parse_version.outputs.minor }} -m "Release v${{ steps.parse_version.outputs.major }}.${{ steps.parse_version.outputs.minor }}"
+          git push origin v${{ steps.parse_version.outputs.major }}
+          git push origin v${{ steps.parse_version.outputs.major }}.${{ steps.parse_version.outputs.minor }}
