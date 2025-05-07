@@ -29,7 +29,7 @@ outputs:
   stackName:
     description: "Name of the stack that was created"
   stackShortName:
-    description: "Short name of the stack that was created"
+    description: "[deprecated, use stackName instead] Short name of the stack that was created"
   baseURL:
     description: "Base URL of the stack"
 

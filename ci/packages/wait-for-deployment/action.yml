@@ -21,7 +21,7 @@ outputs:
   stackName:
     description: "Name of the stack"
   stackShortName:
-    description: "Short name of the stack"
+    description: "[deprecated, use stackName instead] Short name of the stack"
   baseURL:
     description: "Base URL of the stack"
 
