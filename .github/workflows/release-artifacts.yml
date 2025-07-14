@@ -17,8 +17,8 @@ jobs:
         id: generate_token
         uses: actions/create-github-app-token@v2
         with:
-          app-id: ${{ secrets.CZI_RELEASE_PLEASE_APP_ID }}
-          private-key: ${{ secrets.CZI_RELEASE_PLEASE_PK }}
+          app-id: ${{ secrets.GH_ACTIONS_HELPER_APP_ID }}
+          private-key: ${{ secrets.GH_ACTIONS_HELPER_PK }}
           repositories: argus,argus-artifacts,homebrew-tap
 
       # clone the artifact repo
