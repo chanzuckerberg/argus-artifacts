@@ -2,42 +2,11 @@
   "rules": [
     {
       "rulePriority": 1,
-      "description": "Keep production images forever",
+      "description": "Keep at most 1000 images",
       "selection": {
-        "tagStatus": "tagged",
-        "tagPatternList": [
-          "prod*"
-        ],
-        "countType": "imageCountMoreThan",
-        "countNumber": 999999
-      },
-      "action": {
-        "type": "expire"
-      }
-    },
-    {
-      "rulePriority": 2,
-      "description": "Keep latest 1000 of all other tagged images",
-      "selection": {
-        "tagStatus": "tagged",
-        "tagPatternList": [
-          "*"
-        ],
+        "tagStatus": "any",
         "countType": "imageCountMoreThan",
         "countNumber": 1000
-      },
-      "action": {
-        "type": "expire"
-      }
-    },
-    {
-      "rulePriority": 3,
-      "description": "Clean up old untagged images",
-      "selection": {
-        "tagStatus": "untagged",
-        "countType": "sinceImagePushed",
-        "countUnit": "days",
-        "countNumber": 7
       },
       "action": {
         "type": "expire"
