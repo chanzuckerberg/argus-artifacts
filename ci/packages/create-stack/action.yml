@@ -28,8 +28,6 @@ inputs:
 outputs:
   stackName:
     description: "Name of the stack that was created"
-  stackShortName:
-    description: "[deprecated, use stackName instead] Short name of the stack that was created"
   baseURL:
     description: "Base URL of the stack"
 
