@@ -1,0 +1,11 @@
+name: List all applications
+description: Retrieves a list of all applications from Argus
+
+outputs:
+  apps:
+    description: JSON array of all applications
+
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
+
