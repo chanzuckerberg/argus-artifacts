@@ -21,9 +21,9 @@ inputs:
     required: false
     default: '-1'
   postStackDetails:
-    description: "Whether details about the stack should be posted to the PR (if invoked from a PR)"
+    description: "Where details about the stack should be posted to the PR (if invoked from a PR): 'body' to update the PR body, 'comment' to post as a PR comment, 'none' to disable"
     required: false
-    default: 'true'
+    default: 'body'
 
 outputs:
   stackName:
