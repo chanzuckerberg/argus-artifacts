@@ -32,5 +32,5 @@ outputs:
     description: "Base URL of the stack"
 
 runs:
-  using: 'node20'
+  using: 'node24'
   main: 'dist/index.js'

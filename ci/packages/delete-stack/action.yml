@@ -22,5 +22,5 @@ outputs:
     description: "Name of the stack that was deleted"
 
 runs:
-  using: 'node20'
+  using: 'node24'
   main: 'dist/index.js'
