@@ -15,27 +15,27 @@ jobs:
       # For why we need to generate a token and not use the default
       - name: Generate token
         id: generate_token
-        uses: actions/create-github-app-token@v2
+        uses: actions/create-github-app-token@v3
         with:
           app-id: ${{ secrets.GH_ACTIONS_HELPER_APP_ID }}
           private-key: ${{ secrets.GH_ACTIONS_HELPER_PK }}
           repositories: argus,argus-artifacts,homebrew-tap
 
       # clone the artifact repo
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           token: ${{ steps.generate_token.outputs.token }}
           path: ${{ github.event.repository.name }}
 
       # clone the source repo
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           token: ${{ steps.generate_token.outputs.token }}
           repository: chanzuckerberg/${{ env.SOURCE_REPO }}
           # we need to clone the source repo into a directory within the artifact repo so that goreleaser will build the source but use the tag from the artifact repo
           path: ${{ github.event.repository.name }}/core/cli/${{ env.SOURCE_REPO }}
 
-      - uses: actions/setup-go@v5
+      - uses: actions/setup-go@v6
         with:
           go-version-file: ${{ github.event.repository.name }}/core/cli/${{ env.SOURCE_REPO }}/core/go.mod
           cache: true

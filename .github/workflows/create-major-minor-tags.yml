@@ -9,19 +9,19 @@ jobs:
     steps:
       - name: Generate token
         id: generate_token
-        uses: actions/create-github-app-token@v1
+        uses: actions/create-github-app-token@v3
         with:
           app-id: ${{ secrets.GH_ACTIONS_HELPER_APP_ID }}
           private-key: ${{ secrets.GH_ACTIONS_HELPER_PK }}
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: '22'
       - name: Install semver
         run: npm install semver
       - name: Parse Version
         id: parse_version
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             const semver = require('semver')
@@ -33,7 +33,7 @@ jobs:
               throw new Error(`Invalid version: ${version}`)
             }
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           token: ${{ steps.generate_token.outputs.token }}
           ref: ${{ github.ref }}
