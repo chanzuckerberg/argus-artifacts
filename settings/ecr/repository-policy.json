@@ -21,7 +21,10 @@
       ],
       "Condition": {
         "StringEquals": {
-          "aws:PrincipalOrgID": "o-56v5gp5fcu"
+          "aws:PrincipalOrgID": [
+            "o-56v5gp5fcu",
+            "o-5l05z2urto"
+          ]
         }
       }
     }
