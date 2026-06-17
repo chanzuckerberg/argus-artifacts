@@ -27,6 +27,19 @@
           ]
         }
       }
+    },
+    {
+      "Sid": "ProdImageRetagAccess",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": [
+          "arn:aws:iam::533267185808:role/argo_root_core_platform_infra_prod_eks",
+          "arn:aws:iam::471112759938:role/argo_root_core_platform_infra_dev_eks"
+        ]
+      },
+      "Action": [
+        "ecr:PutImage"
+      ]
     }
   ]
 }
