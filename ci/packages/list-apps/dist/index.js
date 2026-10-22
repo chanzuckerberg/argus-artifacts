@@ -69537,7 +69537,7 @@ function jwtDecode(token, options) {
 }
 
 ;// CONCATENATED MODULE: ../../package.json
-const package_namespaceObject = {"rE":"0.144.1"};
+const package_namespaceObject = {"rE":"0.144.2"};
 ;// CONCATENATED MODULE: ../shared/client.ts
 
 
@@ -69617,7 +69617,7 @@ function getContext() {
         }
         additionalContext.pullRequestNumber = pullRequestNumber;
     }
-    else if (['push', 'workflow_dispatch', 'schedule'].includes(github.context.eventName)) {
+    else if (['push', 'workflow_dispatch', 'schedule', 'merge_group'].includes(github.context.eventName)) {
         // TODO(elopez): this won't work with tags
         const pruneHead = 'refs/heads/';
         headRef = github.context.ref.substring(pruneHead.length);
