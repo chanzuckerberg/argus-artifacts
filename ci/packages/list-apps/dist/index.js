@@ -69537,7 +69537,7 @@ function jwtDecode(token, options) {
 }
 
 ;// CONCATENATED MODULE: ../../package.json
-const package_namespaceObject = {"rE":"0.145.0"};
+const package_namespaceObject = {"rE":"0.146.0"};
 ;// CONCATENATED MODULE: ../shared/client.ts
 
 
