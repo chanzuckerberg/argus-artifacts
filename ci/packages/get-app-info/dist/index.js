@@ -69032,6 +69032,12 @@ __nccwpck_require__.d(__webpack_exports__, {
 
 // EXTERNAL MODULE: ../../node_modules/@actions/core/lib/core.js
 var lib_core = __nccwpck_require__(7184);
+// EXTERNAL MODULE: external "fs"
+var external_fs_ = __nccwpck_require__(9896);
+var external_fs_default = /*#__PURE__*/__nccwpck_require__.n(external_fs_);
+// EXTERNAL MODULE: external "path"
+var external_path_ = __nccwpck_require__(6928);
+var external_path_default = /*#__PURE__*/__nccwpck_require__.n(external_path_);
 ;// CONCATENATED MODULE: ../../node_modules/openapi-fetch/dist/index.js
 // settings & const
 const DEFAULT_HEADERS = {
@@ -69554,15 +69560,16 @@ function jwtDecode(token, options) {
     }
 }
 
-;// CONCATENATED MODULE: ../../package.json
-const package_namespaceObject = {"rE":"0.152.0"};
 ;// CONCATENATED MODULE: ../shared/client.ts
 
 
 
 
-// eslint-disable-next-line import/no-relative-packages
 
+
+// Read at runtime rather than imported so a release-please version bump doesn't change the bundled dist/index.js.
+// Each package's build copies version.json into its dist/, where release-please bumps it alongside this source copy.
+const { version: actionVersion } = JSON.parse(external_fs_default().readFileSync(external_path_default().join(__dirname, 'version.json'), 'utf8'));
 async function getClient(context, callerName) {
     const { argusBaseUrl } = context;
     validateCIActionVersion(argusBaseUrl);
@@ -69599,7 +69606,7 @@ function formatContext(context) {
     return resultParts.join('; ');
 }
 function getVersion() {
-    return package_namespaceObject.rE;
+    return actionVersion;
 }
 async function validateCIActionVersion(argusBaseUrl) {
     const resp = await fetch(`${argusBaseUrl}/discovery`);
@@ -69798,7 +69805,7 @@ async function waitForDeployment(client, appName, envName, branchName, timeoutSe
 
 
 ;// CONCATENATED MODULE: ./package.json
-const package_namespaceObject_1 = /*#__PURE__*/JSON.parse('{"UU":"@argus-ci/get-app-info"}');
+const package_namespaceObject = /*#__PURE__*/JSON.parse('{"UU":"@argus-ci/get-app-info"}');
 ;// CONCATENATED MODULE: ./src/main.ts
 
 
@@ -69814,10 +69821,10 @@ async function main() {
     const context = getContext();
     await lib_core.group('Log context', async () => {
         lib_core.info(`Context: ${JSON.stringify(context, null, 2)}`);
-        lib_core.info(`User Agent: ${getUserAgent(context, package_namespaceObject_1.UU)}`);
+        lib_core.info(`User Agent: ${getUserAgent(context, package_namespaceObject.UU)}`);
     });
     lib_core.info(`Requesting to list envs in app=${inputs.appName}`);
-    const client = await getClient(context, package_namespaceObject_1.UU);
+    const client = await getClient(context, package_namespaceObject.UU);
     const { data, error } = await client.GET('/v1/deployments/findAppByName', {
         params: {
             header: { Authorization: '' }, // real token added by middleware

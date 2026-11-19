@@ -69042,6 +69042,11 @@ __nccwpck_require__.d(__webpack_exports__, {
   waitForDeployment: () => (/* reexport */ waitForDeployment)
 });
 
+// EXTERNAL MODULE: external "fs"
+var external_fs_ = __nccwpck_require__(9896);
+var external_fs_default = /*#__PURE__*/__nccwpck_require__.n(external_fs_);
+// EXTERNAL MODULE: external "path"
+var external_path_ = __nccwpck_require__(6928);
 ;// CONCATENATED MODULE: ../../node_modules/openapi-fetch/dist/index.js
 // settings & const
 const DEFAULT_HEADERS = {
@@ -69566,15 +69571,16 @@ function jwtDecode(token, options) {
     }
 }
 
-;// CONCATENATED MODULE: ../../package.json
-const package_namespaceObject = {"rE":"0.152.0"};
 ;// CONCATENATED MODULE: ./client.ts
 
 
 
 
-// eslint-disable-next-line import/no-relative-packages
 
+
+// Read at runtime rather than imported so a release-please version bump doesn't change the bundled dist/index.js.
+// Each package's build copies version.json into its dist/, where release-please bumps it alongside this source copy.
+const { version: actionVersion } = JSON.parse(external_fs_default().readFileSync(__nccwpck_require__.ab + "version.json", 'utf8'));
 async function getClient(context, callerName) {
     const { argusBaseUrl } = context;
     validateCIActionVersion(argusBaseUrl);
@@ -69611,7 +69617,7 @@ function formatContext(context) {
     return resultParts.join('; ');
 }
 function getVersion() {
-    return package_namespaceObject.rE;
+    return actionVersion;
 }
 async function validateCIActionVersion(argusBaseUrl) {
     const resp = await fetch(`${argusBaseUrl}/discovery`);

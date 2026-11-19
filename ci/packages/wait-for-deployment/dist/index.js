@@ -69032,6 +69032,12 @@ __nccwpck_require__.d(__webpack_exports__, {
 
 // EXTERNAL MODULE: ../../node_modules/@actions/core/lib/core.js
 var core = __nccwpck_require__(7184);
+// EXTERNAL MODULE: external "fs"
+var external_fs_ = __nccwpck_require__(9896);
+var external_fs_default = /*#__PURE__*/__nccwpck_require__.n(external_fs_);
+// EXTERNAL MODULE: external "path"
+var external_path_ = __nccwpck_require__(6928);
+var external_path_default = /*#__PURE__*/__nccwpck_require__.n(external_path_);
 ;// CONCATENATED MODULE: ../../node_modules/openapi-fetch/dist/index.js
 // settings & const
 const DEFAULT_HEADERS = {
@@ -69554,15 +69560,16 @@ function jwtDecode(token, options) {
     }
 }
 
-;// CONCATENATED MODULE: ../../package.json
-const package_namespaceObject = {"rE":"0.152.0"};
 ;// CONCATENATED MODULE: ../shared/client.ts
 
 
 
 
-// eslint-disable-next-line import/no-relative-packages
 
+
+// Read at runtime rather than imported so a release-please version bump doesn't change the bundled dist/index.js.
+// Each package's build copies version.json into its dist/, where release-please bumps it alongside this source copy.
+const { version: actionVersion } = JSON.parse(external_fs_default().readFileSync(external_path_default().join(__dirname, 'version.json'), 'utf8'));
 async function getClient(context, callerName) {
     const { argusBaseUrl } = context;
     validateCIActionVersion(argusBaseUrl);
@@ -69599,7 +69606,7 @@ function formatContext(context) {
     return resultParts.join('; ');
 }
 function getVersion() {
-    return package_namespaceObject.rE;
+    return actionVersion;
 }
 async function validateCIActionVersion(argusBaseUrl) {
     const resp = await fetch(`${argusBaseUrl}/discovery`);
@@ -77940,7 +77947,7 @@ async function waitForDeployment(client, appName, envName, branchName, timeoutSe
 
 
 ;// CONCATENATED MODULE: ./package.json
-const package_namespaceObject_1 = /*#__PURE__*/JSON.parse('{"UU":"@argus-ci/wait-for-deployment"}');
+const package_namespaceObject = /*#__PURE__*/JSON.parse('{"UU":"@argus-ci/wait-for-deployment"}');
 ;// CONCATENATED MODULE: ./src/main.ts
 
 
@@ -77963,7 +77970,7 @@ async function main() {
     const context = getContext();
     await core.group('Log context', async () => {
         core.info(`Context: ${JSON.stringify(context, null, 2)}`);
-        core.info(`User Agent: ${getUserAgent(context, package_namespaceObject_1.UU)}`);
+        core.info(`User Agent: ${getUserAgent(context, package_namespaceObject.UU)}`);
     });
     if (inputs.dryRun) {
         core.warning('Dry Run: Skipping wait for deployment');
@@ -77971,7 +77978,7 @@ async function main() {
     }
     const branchName = context.branch;
     core.info(`Waiting for stack to become synced and healthy (git_branch=${branchName}) in app=${inputs.appName} env=${inputs.envName}`);
-    const client = await getClient(context, package_namespaceObject_1.UU);
+    const client = await getClient(context, package_namespaceObject.UU);
     const stackInfo = await waitForDeployment(client, inputs.appName, inputs.envName, branchName, inputs.timeoutSeconds, context.gitSha);
     core.setOutput('stackName', stackInfo.name);
     core.setOutput('baseURL', stackInfo.base_url);
